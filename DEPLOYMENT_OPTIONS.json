@@ -1,0 +1,146 @@
+{
+    "deploymentOptions": {
+        "recommended": "GitHub + Vercel Dashboard",
+        "options": [
+            {
+                "name": "GitHub + Vercel Dashboard (الأسهل)",
+                "difficulty": "سهل ⭐",
+                "time": "10 دقائق",
+                "steps": [
+                    "1. رفع المشروع على GitHub",
+                    "2. اذهب إلى vercel.com",
+                    "3. اختر 'New Project'",
+                    "4. اختر GitHub repo",
+                    "5. اضغط 'Deploy'",
+                    "6. تم! الآن Auto Deploy مع كل push"
+                ],
+                "pros": [
+                    "Auto deployment",
+                    "Preview URLs",
+                    "Easy rollback",
+                    "GitHub integration"
+                ],
+                "cons": [
+                    "يتطلب حساب GitHub"
+                ]
+            },
+            {
+                "name": "Vercel CLI (البديل)",
+                "difficulty": "متوسط ⭐⭐",
+                "time": "5 دقائق",
+                "steps": [
+                    "1. npm install -g vercel",
+                    "2. vercel login",
+                    "3. vercel --prod",
+                    "4. تم النشر!"
+                ],
+                "pros": [
+                    "بسيط وسريع",
+                    "لا يتطلب GitHub"
+                ],
+                "cons": [
+                    "لا auto deployment",
+                    "يتطلب CLI installation"
+                ]
+            },
+            {
+                "name": "Direct Upload (بدون Git)",
+                "difficulty": "معقد ⭐⭐⭐",
+                "time": "15 دقيقة",
+                "steps": [
+                    "1. npm run build",
+                    "2. اذهب إلى vercel.com",
+                    "3. اسحب وأفلت مجلد dist/",
+                    "4. أضف متغيرات البيئة",
+                    "5. تم!"
+                ],
+                "pros": [
+                    "بدون Git setup"
+                ],
+                "cons": [
+                    "لا auto deployment",
+                    "أقل احترافية"
+                ]
+            }
+        ]
+    },
+    "preDeploymentChecklist": [
+        "✅ npm run build ينجح محلياً",
+        "✅ dist/ folder يحتوي على ملفات",
+        "✅ vercel.json موجود ومعد",
+        "✅ .env.local في .gitignore",
+        "✅ package.json يحتوي على build script"
+    ],
+    "postDeploymentChecklist": [
+        "✅ الموقع يفتح بدون أخطاء",
+        "✅ Login يعمل (admin@test.com / admin123)",
+        "✅ الصفحات تحمل بسرعة",
+        "✅ لا توجد أخطاء في Console (F12)",
+        "✅ الـ Responsive design يعمل على Mobile"
+    ],
+    "environmentVariablesForProduction": {
+        "required": [
+            {
+                "name": "VITE_SUPABASE_URL",
+                "example": "https://your-project.supabase.co",
+                "source": "Supabase Dashboard > Settings > API"
+            },
+            {
+                "name": "VITE_SUPABASE_ANON_KEY",
+                "example": "eyJhbGciOiJIUzI1NiIs...",
+                "source": "Supabase Dashboard > Settings > API"
+            }
+        ],
+        "optional": [
+            {
+                "name": "VITE_FIREBASE_API_KEY",
+                "example": "AIzaSy...",
+                "note": "للمصادقة السحابية فقط"
+            }
+        ]
+    },
+    "troubleshooting": {
+        "buildFailed": {
+            "error": "Build command failed",
+            "solutions": [
+                "1. تأكد من npm run build يعمل محلياً",
+                "2. تحقق من Vercel Build Logs",
+                "3. تأكد من المتغيرات البيئية معرفة",
+                "4. حاول: npm install && npm run build"
+            ]
+        },
+        "appLoadsButNo404": {
+            "error": "All routes return home page",
+            "solution": "vercel.json rewrites موجودة (السلوك الصحيح للـ SPA)"
+        },
+        "databaseNotWorking": {
+            "error": "SQLite لا يعمل",
+            "solution": "استخدم Supabase بدلاً من SQLite المحلي"
+        },
+        "slowLoadingTime": {
+            "error": "التطبيق بطيء",
+            "solutions": [
+                "1. تحقق من حجم Bundle في Vercel Analytics",
+                "2. استخدم CDN (مدرج فـ Vercel)",
+                "3. قلل حجم الصور",
+                "4. استخدم Code Splitting"
+            ]
+        }
+    },
+    "usefulLinks": {
+        "vercelDashboard": "https://vercel.com/dashboard",
+        "vercelDocs": "https://vercel.com/docs",
+        "deploymentStatus": "https://vercel-status.com",
+        "communitySupport": "https://vercel.com/community",
+        "createNewRepo": "https://github.com/new",
+        "supabaseDashboard": "https://app.supabase.com"
+    },
+    "expectedResults": {
+        "buildSize": "~400KB gzip",
+        "deploymentTime": "2-3 minutes",
+        "initialLoadTime": "<3 seconds",
+        "uptime": "99.9%",
+        "ssl": "✅ Free HTTPS",
+        "autoDeployment": "✅ With GitHub"
+    }
+}
